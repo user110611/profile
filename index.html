@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1106Games | KamenSimulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .text-purple-500 {
+            color: #8B5CF6;
+        }
+
+        .bg-purple-600 {
+            background-color: #7C3AED;
+        }
+
+        .hover\:bg-purple-700:hover {
+            background-color: #6D28D9;
+        }
+        .btn-gradient {
+            background-image: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%);
+            transition: transform 0.2s ease-in-out;
+        }
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Header -->
+    <header class="p-8 flex justify-between items-center z-10 relative">
+        <div class="text-3xl font-bold text-purple-500">1106<span class="text-white">Games</span></div>
+        <nav class="flex space-x-6 text-lg">
+            <a href="#about" class="hover:text-purple-500 transition-colors duration-300">Об игре</a>
+            <a href="#developer" class="hover:text-purple-500 transition-colors duration-300">Обо мне</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center p-4 text-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-black opacity-70"></div>
+        <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 md:pr-12">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight text-left">
+                    <span class="text-purple-500">user110611</span>
+                    <span class="block mt-2">1106Games</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-300 text-left">
+                    Привет! Я user110611, независимый разработчик игр и основатель 1106Games. Я стремлюсь создавать увлекательные и захватывающие миры, в которых каждый может найти что-то для себя.
+                </p>
+                <div class="mt-6 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 justify-start">
+                    <a href="https://github.com/user110611" target="_blank" class="flex items-center space-x-2 text-purple-400 hover:text-white transition-colors duration-300">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.418 2.867 8.125 6.839 9.498.5.092.682-.217.682-.483 0-.237-.008-.88.01-1.722-2.77-.6-3.35-1.34-3.35-1.34-.454-1.156-1.11-1.46-1.11-1.46-.908-.62.069-.608.069-.608 1.007.07 1.532 1.03 1.532 1.03.89 1.529 2.347 1.085 2.91.828.092-.644.35-1.085.637-1.336-2.22-.25-4.555-1.11-4.555-4.943 0-1.09.39-1.984 1.029-2.682-.103-.254-.447-1.272.098-2.65 0 0 .84-.27 2.75 1.025.795-.222 1.637-.333 2.5-.337.863.004 1.705.115 2.5.337 1.91-1.295 2.75-1.025 2.75-1.025.546 1.378.202 2.396.098 2.65.64.698 1.029 1.592 1.029 2.682 0 3.843-2.335 4.69-4.565 4.935.358.307.678.915.678 1.846 0 1.337-.012 2.418-.012 2.756 0 .267.18.577.688.484C19.14 20.143 22 16.435 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-lg">GitHub</span>
+                    </a>
+                    <a href="https://t.me/Games1106" target="_blank" class="flex items-center space-x-2 text-purple-400 hover:text-white transition-colors duration-300">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.944 0zm6.386 7.646l-2.031 9.423a1.056 1.056 0 01-1.579.522l-4.706-3.442-2.195 2.155a.995.995 0 01-1.782-.693l.006-.118 1.487-4.577-4.496-3.32a.995.995 0 01.37-.99l1.9-.844 1.156-1.545a.6.6 0 01.996-.062z" />
+                        </svg>
+                        <span class="text-lg">Telegram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0">
+                <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-flash-web.max-1000x1000.jpg" alt="Кадр из игры KamenSimulator" class="rounded-3xl shadow-2xl w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Game Section -->
+    <section id="about" class="py-20 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-purple-500">О моей игре KamenSimulator</h2>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-flash-web.max-1000x1000.jpg" alt="Кадр из игры KamenSimulator" class="rounded-3xl shadow-2xl">
+                </div>
+                <div>
+                    <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                        KamenSimulator — это не просто игра, это целая вселенная, где ты можешь почувствовать себя настоящим коллекционером. Изучай разные локации, находи редкие экземпляры и расширяй свою коллекцию. Каждый камень обладает уникальными характеристиками и историей. Насколько далеко ты готов зайти, чтобы собрать их все?
+                    </p>
+                    <a href="https://kamensimulator-3423b.web.app/" target="_blank" class="mt-6 inline-block px-8 py-4 text-lg font-bold rounded-full btn-gradient shadow-lg">
+                        Перейти на сайт игры
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 1106Games. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Optional JavaScript for future functionality
+        });
+    </script>
+</body>
+</html>
