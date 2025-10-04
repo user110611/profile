@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,53 @@
         ::-webkit-scrollbar-track {
             background-color: #0d0d10;
         }
+        /* Стили для переключателя языка */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #9333ea; /* Фиолетовый */
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "EN";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: #1a1a20;
+        }
+        input:checked + .slider {
+            background-color: #4c1d95;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            content: "RU";
+        }
     </style>
 </head>
 <body class="text-gray-100 antialiased">
@@ -44,10 +91,23 @@
     <header class="sticky top-0 z-50 bg-[#0d0d10]/95 backdrop-blur-sm shadow-xl">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center max-w-4xl">
             <a href="#" class="text-2xl font-extrabold text-neon-purple tracking-wider">user110611</a>
-            <div class="space-x-4 hidden sm:block">
-                <a href="#projects" class="text-gray-300 hover:text-neon-purple transition duration-300">Проекты</a>
-                <a href="#skills" class="text-gray-300 hover:text-neon-purple transition duration-300">Навыки</a>
-                <a href="#contact" class="text-gray-300 hover:text-neon-purple transition duration-300">Контакты</a>
+            
+            <div class="flex items-center space-x-6">
+                <!-- Языковой переключатель -->
+                <div class="flex items-center space-x-2">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="languageToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="space-x-4 hidden sm:block">
+                    <a href="#about" class="text-gray-300 hover:text-neon-purple transition duration-300" data-i18n="nav-about">About Me</a>
+                    <a href="#projects" class="text-gray-300 hover:text-neon-purple transition duration-300" data-i18n="nav-projects">Projects</a>
+                    <a href="#skills" class="text-gray-300 hover:text-neon-purple transition duration-300" data-i18n="nav-skills">Skills</a>
+                    <a href="#education" class="text-gray-300 hover:text-neon-purple transition duration-300" data-i18n="nav-education">Education</a>
+                    <a href="#contact" class="text-gray-300 hover:text-neon-purple transition duration-300" data-i18n="nav-contact">Contact</a>
+                </div>
             </div>
         </nav>
     </header>
@@ -57,45 +117,114 @@
         <!-- Секция 1: Приветствие (Hero) -->
         <section id="home" class="text-center py-16 md:py-24">
             <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
-                <span class="text-white block">GameDev Разработчик</span>
-                <span class="text-neon-purple block mt-2">Unity | user110611</span>
+                <span class="text-white block" data-i18n="hero-title-1">GameDev Developer</span>
+                <span class="text-neon-purple block mt-2" data-i18n="hero-title-2">Unity | user110611</span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
-                Создаю интерактивные 2D/3D миры на <strong>Unity</strong> и внедряю надежные <strong>облачные решения (Firebase)</strong>.
-                Ищу экспертную оценку своих навыков.
+            <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto" data-i18n="hero-subtitle">
+                Building interactive 2D/3D worlds with <strong>Unity</strong> and implementing robust <strong>cloud solutions (Firebase)</strong>. Seeking expert evaluation of my skills.
             </p>
-            <a href="#skills" class="inline-block bg-neon-purple hover:bg-violet-700 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-violet-500/50 transition duration-300 transform hover:scale-105">
-                Оценить Навыки
+            <a href="#skills" class="inline-block bg-neon-purple hover:bg-violet-700 text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-violet-500/50 transition duration-300 transform hover:scale-105" data-i18n="hero-button">
+                Evaluate Skills
             </a>
         </section>
 
         <!-- Разделитель -->
         <div class="h-px w-full bg-violet-800 opacity-50 my-10"></div>
+        
+        <!-- Секция 2: Обо мне (About Me) -->
+        <section id="about" class="py-12 md:py-16">
+            <h2 class="text-4xl font-bold mb-10 text-center text-neon-purple" data-i18n="section-about-title">About Me</h2>
 
-        <!-- Секция 2: Проекты -->
+            <div class="grid md:grid-cols-2 gap-8 card-bg p-6 rounded-xl shadow-2xl border border-violet-800/50">
+                
+                <!-- Личная информация -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-white flex items-center">
+                        <span class="text-5xl mr-3">👤</span> <span data-i18n="about-personal-info-title">Personal Information</span>
+                    </h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <strong class="w-32 text-neon-purple" data-i18n="about-name-label">Name:</strong>
+                            <span class="ml-2">Damir Andriushchenko</span>
+                        </li>
+                        <li class="flex items-start">
+                            <strong class="w-32 text-neon-purple" data-i18n="about-dob-label">Born:</strong>
+                            <span class="ml-2">11/06/2011</span>
+                        </li>
+                        <li class="flex items-start">
+                            <strong class="w-32 text-neon-purple" data-i18n="about-birthplace-label">Birthplace:</strong>
+                            <span class="ml-2" data-i18n="about-birthplace">Donetsk, Ukraine</span>
+                        </li>
+                        <!-- ЛИЧНЫЕ КАЧЕСТВА (Обновлено) -->
+                        <li class="flex items-start pt-4">
+                            <strong class="w-32 text-neon-purple" data-i18n="about-qualities-label">Qualities:</strong>
+                            <span class="ml-2" data-i18n="about-qualities">Communicative, kind, open, able to find common ground with clients, and experienced in working collaboratively in a team.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Языки и Опыт -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-white flex items-center">
+                        <span class="text-5xl mr-3">💬</span> <span data-i18n="about-skills-title">Languages & Experience</span>
+                    </h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li>
+                            <strong class="text-neon-purple block mb-2" data-i18n="about-languages-label">Spoken Languages:</strong>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="inline-block bg-violet-900/50 px-3 py-1 rounded-full text-sm" data-i18n="lang-russian">Russian</span>
+                                <span class="inline-block bg-violet-900/50 px-3 py-1 rounded-full text-sm" data-i18n="lang-ukrainian">Ukrainian</span>
+                                <span class="inline-block bg-violet-900/50 px-3 py-1 rounded-full text-sm" data-i18n="lang-italian">Italian</span>
+                            </div>
+                        </li>
+                        <li class="pt-4">
+                            <strong class="text-neon-purple block mb-1" data-i18n="about-scratch-label">Early Experience:</strong>
+                            <a href="https://scratch.mit.edu/users/Damir110611/" target="_blank" class="text-blue-400 hover:text-neon-purple transition duration-200 underline flex items-center" data-i18n="about-scratch-link">
+                                Scratch Profile (Damir110611)
+                                <!-- External Link Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2d-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Разделитель -->
+        <div class="h-px w-full bg-violet-800 opacity-50 my-10"></div>
+
+
+        <!-- Секция 3: Проекты -->
         <section id="projects" class="py-12 md:py-16">
-            <h2 class="text-4xl font-bold mb-10 text-center text-neon-purple">Мои Проекты</h2>
+            <h2 class="text-4xl font-bold mb-10 text-center text-neon-purple" data-i18n="section-projects-title">My Projects</h2>
 
             <!-- Карточка проекта Kamen Simulator -->
             <div class="card-bg p-6 md:p-10 rounded-xl shadow-2xl border border-violet-800/50 transition duration-500">
-                <h3 class="text-3xl font-bold mb-4 text-white">1. Kamen Simulator</h3>
-                <p class="text-gray-400 mb-6 text-lg">
-                    <strong>Описание:</strong> Абсурдный 3D симулятор, в котором игрок управляет камнем, собирающим грибы.
+                <h3 class="text-3xl font-bold mb-4 text-white" data-i18n="project-1-title">1. Stone Simulator</h3>
+                <p class="text-gray-400 mb-6 text-lg" data-i18n="project-1-desc">
+                    <strong>Description:</strong> An absurd 3D simulator where the player controls a stone collecting mushrooms.
                 </p>
                 <div class="space-y-3 mb-6 text-gray-300">
-                    <p><strong class="text-neon-purple">Стек:</strong> Unity, C#.</p>
-                    <p><strong class="text-neon-purple">Техническая ценность:</strong> Демонстрация базовой механики движения, работы с физикой (Rigidbody) и системы сбора предметов (Trigger/Collision) в 3D среде Unity. Проект показывает уверенное владение основными компонентами движка.</p>
+                    <p data-i18n="project-1-stack">
+                        <strong class="text-neon-purple">Stack:</strong> Unity, C#.
+                    </p>
+                    <p data-i18n="project-1-tech">
+                        <strong class="text-neon-purple">Technical Value:</strong> Demonstrates basic movement mechanics, physics (Rigidbody) handling, and a 3D item collection system (Trigger/Collision) in the Unity environment. The project shows confident mastery of the engine's core components.
+                    </p>
                 </div>
 
                 <!-- Кнопки действий -->
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
                     <!-- 1. Primary: Play Game -->
-                    <a href="https://kamensimulator-3423b.web.app/" target="_blank" class="flex-1 text-center bg-neon-purple hover:bg-violet-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-[1.02]">
-                        ▶️ Играть в Симулятор
+                    <a href="https://kamensimulator-3423b.web.app/" target="_blank" class="flex-1 text-center bg-neon-purple hover:bg-violet-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-[1.02]" data-i18n="project-1-button-play">
+                        ▶️ Play Simulator
                     </a>
                     <!-- 2. Secondary: GitHub Profile -->
-                    <a href="https://github.com/user110611" target="_blank" class="flex-1 text-center border border-violet-600 hover:bg-violet-900/50 text-violet-400 font-semibold py-3 px-6 rounded-lg transition duration-300">
-                        💻 GitHub (Общий Профиль)
+                    <a href="https://github.com/user110611" target="_blank" class="flex-1 text-center border border-violet-600 hover:bg-violet-900/50 text-violet-400 font-semibold py-3 px-6 rounded-lg transition duration-300" data-i18n="project-1-button-github">
+                        💻 GitHub (Main Profile)
                     </a>
                 </div>
             </div>
@@ -107,55 +236,87 @@
         <div class="h-px w-full bg-violet-800 opacity-50 my-10"></div>
 
 
-        <!-- Секция 3: Навыки (Skills) -->
+        <!-- Секция 4: Навыки (Skills) -->
         <section id="skills" class="py-12 md:py-16">
-            <h2 class="text-4xl font-bold mb-10 text-center text-neon-purple">Ключевые Навыки</h2>
-            <p class="text-center text-gray-400 mb-12 text-lg">
-                Моя экспертиза лежит в разработке игр на Unity и создании надежного облачного бэкенда для них.
+            <h2 class="text-4xl font-bold mb-10 text-center text-neon-purple" data-i18n="section-skills-title">Key Skills</h2>
+            <p class="text-center text-gray-400 mb-12 text-lg" data-i18n="section-skills-subtitle">
+                My expertise lies in game development using Unity and creating a reliable cloud backend for them.
             </p>
 
-            <div class="grid md:grid-cols-2 gap-8">
+            <!-- Группировка навыков: изменено на md:grid-cols-3 для 3 карточек -->
+            <div class="grid md:grid-cols-3 gap-8">
 
-                <!-- Навыки Unity (GameDev) -->
+                <!-- 1. Навыки Unity (GameDev) -->
                 <div class="card-bg p-6 rounded-xl shadow-xl border border-violet-800/50">
                     <div class="flex items-center mb-4">
                         <span class="text-5xl text-red-500 mr-4">👾</span>
-                        <h3 class="text-2xl font-bold text-white">Unity & C# Разработка</h3>
+                        <h3 class="text-2xl font-bold text-white" data-i18n="skill-unity-title">Unity & C# Development</h3>
                     </div>
                     <ul class="space-y-3 text-gray-300">
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>C#</strong>: Написание чистого, читаемого и оптимизированного кода для игровой логики.
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-csharp">
+                                <strong>C#</strong>: Writing clean, readable, and optimized code for game logic.
+                            </span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Unity Ecosystem</strong>: Уверенная работа с GameObject, Components, Prefabs, Physics и Animator.
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-unity-eco">
+                                <strong>Unity Ecosystem</strong>: Confident handling of GameObject, Components, Prefabs, Physics, and Animator.
+                            </span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Игровая Механика</strong>: Разработка базовых систем (движение, инвентарь, UI) в 2D и 3D.
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Оптимизация</strong>: Начальные навыки в повышении производительности и профилировании.
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-game-mechanics">
+                                <strong>Game Mechanics</strong>: Development of basic systems (movement, inventory, UI) in 2D and 3D.
+                            </span>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Навыки Firebase & Cloud -->
+                <!-- 2. Навыки Firebase & Cloud -->
                 <div class="card-bg p-6 rounded-xl shadow-xl border border-violet-800/50">
                     <div class="flex items-center mb-4">
                         <span class="text-5xl text-yellow-500 mr-4">☁️</span>
-                        <h3 class="text-2xl font-bold text-white">Облачные Технологии (Firebase)</h3>
+                        <h3 class="text-2xl font-bold text-white" data-i18n="skill-firebase-title">Cloud Technologies (Firebase)</h3>
                     </div>
                     <ul class="space-y-3 text-gray-300">
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Firestore/Realtime DB</strong>: Эффективное управление данными в реальном времени.
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-firestore">
+                                <strong>Firestore/Realtime DB</strong>: Effective real-time data management.
+                            </span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Firebase Integration</strong>: Интеграция облачных сервисов с проектами Unity (Highscores, User Profiles).
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-firebase-int">
+                                <strong>Firebase Integration</strong>: Integrating cloud services with Unity projects (Highscores, User Profiles).
+                            </span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Authentication</strong>: Реализация систем входа и регистрации пользователей.
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-auth">
+                                <strong>Authentication</strong>: Implementation of user login and registration systems.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. Навыки Version Control (NEW) -->
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-violet-800/50">
+                    <div class="flex items-center mb-4">
+                        <span class="text-5xl text-gray-400 mr-4">⚙️</span>
+                        <h3 class="text-2xl font-bold text-white" data-i18n="skill-git-title">Version Control (Git/GitHub)</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-git-desc-1">
+                                <strong>GitHub</strong>: Confident use of basic commands (commit, push, pull, branch) to manage project code.
+                            </span>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-neon-purple mr-2 mt-1">✓</span> <strong>Storage</strong>: Хранение и управление пользовательскими файлами и игровыми ассетами.
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-git-desc-2">
+                                <strong>Collaboration</strong>: Ability to work in shared repositories and resolve basic conflicts.
+                            </span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="skill-git-unity">
+                                <strong>Unity Workflow</strong>: Experience in synchronizing Unity assets and scenes via Git.
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -165,12 +326,70 @@
 
         <!-- Разделитель -->
         <div class="h-px w-full bg-violet-800 opacity-50 my-10"></div>
+        
+        <!-- Секция 5: Образование (Education) -->
+        <section id="education" class="py-12 md:py-16">
+            <h2 class="text-4xl font-bold mb-10 text-center text-neon-purple" data-i18n="section-education-title">Education & Background</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- GoIt -->
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-violet-800/50">
+                    <div class="flex items-center mb-4">
+                        <span class="text-5xl text-green-400 mr-4">🎓</span>
+                        <h3 class="text-2xl font-bold text-white" data-i18n="education-goit-title">GoIt (Online IT School)</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="education-goit-desc">
+                                Online IT school focused on modern development practices.
+                            </span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">🔗</span>
+                            <a href="https://www.edu.goit.global/ru" target="_blank" class="hover:text-violet-400 transition duration-200">
+                                <strong>Website:</strong> https://www.edu.goit.global/ru
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-        <!-- Секция 4: Контакты -->
+                <!-- Scuola Media Paolo VI -->
+                <div class="card-bg p-6 rounded-xl shadow-xl border border-violet-800/50">
+                    <div class="flex items-center mb-4">
+                        <span class="text-5xl text-blue-400 mr-4">🏫</span>
+                        <h3 class="text-2xl font-bold text-white" data-i18n="education-paolo-title">Scuola Media Paolo VI (Italy)</h3>
+                    </div>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">✓</span> <span data-i18n="education-paolo-desc">
+                                Private middle school in Italy.
+                            </span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">📅</span> 
+                            <strong>09/2022 - 06/2025</strong>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-neon-purple mr-2 mt-1">🔗</span>
+                            <a href="https://www.istitutopavoni.it/" target="_blank" class="hover:text-violet-400 transition duration-200">
+                                <strong>Website:</strong> https://www.istitutopavoni.it/
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Разделитель -->
+        <div class="h-px w-full bg-violet-800 opacity-50 my-10"></div>
+
+
+        <!-- Секция 6: Контакты -->
         <section id="contact" class="py-12 md:py-16 text-center">
-            <h2 class="text-4xl font-bold mb-6 text-neon-purple">Связь со мной</h2>
-            <p class="text-gray-400 mb-10 text-lg">
-                Используйте ссылки ниже, чтобы дать обратную связь по моим проектам и навыкам, или связаться с 1106Games.
+            <h2 class="text-4xl font-bold mb-6 text-neon-purple" data-i18n="section-contact-title">Contact Me</h2>
+            <p class="text-gray-400 mb-10 text-lg" data-i18n="section-contact-subtitle">
+                Use the links below to give feedback on my projects and skills, or to contact 1106Games.
             </p>
 
             <div class="flex justify-center space-x-6 md:space-x-10">
@@ -206,6 +425,178 @@
 
     </main>
 
+    <script>
+        const translations = {
+            'nav-about': { 'en': 'About Me', 'ru': 'Обо мне' },
+            'nav-projects': { 'en': 'Projects', 'ru': 'Проекты' },
+            'nav-skills': { 'en': 'Skills', 'ru': 'Навыки' },
+            'nav-education': { 'en': 'Education', 'ru': 'Образование' },
+            'nav-contact': { 'en': 'Contact', 'ru': 'Контакты' },
+
+            'hero-title-1': { 'en': 'GameDev Developer', 'ru': 'GameDev Разработчик' },
+            'hero-title-2': { 'en': 'Unity | user110611', 'ru': 'Unity | user110611' },
+            'hero-subtitle': { 
+                'en': 'Building interactive 2D/3D worlds with <strong>Unity</strong> and implementing robust <strong>cloud solutions (Firebase)</strong>. Seeking expert evaluation of my skills.', 
+                'ru': 'Создаю интерактивные 2D/3D миры на <strong>Unity</strong> и внедряю надежные <strong>облачные решения (Firebase)</strong>. Ищу экспертную оценку своих навыков.' 
+            },
+            'hero-button': { 'en': 'Evaluate Skills', 'ru': 'Оценить Навыки' },
+            
+            // About Me Section
+            'section-about-title': { 'en': 'About Me', 'ru': 'Обо мне' },
+            'about-personal-info-title': { 'en': 'Personal Information', 'ru': 'Личная информация' },
+            'about-name-label': { 'en': 'Name:', 'ru': 'Имя:' },
+            'about-dob-label': { 'en': 'Born:', 'ru': 'Дата рождения:' },
+            'about-birthplace-label': { 'en': 'Birthplace:', 'ru': 'Место рождения:' },
+            'about-birthplace': { 'en': 'Donetsk, Ukraine', 'ru': 'Донецк, Украина' },
+            // UPDATED QUALITIES
+            'about-qualities-label': { 'en': 'Qualities:', 'ru': 'Качества:' },
+            'about-qualities': {
+                'en': 'Communicative, kind, open, able to find common ground with clients, and experienced in working collaboratively in a team.',
+                'ru': 'Коммуникабельный, добрый, открытый, способен находить общий язык с клиентами, а также умею эффективно работать в команде.'
+            },
+            
+            'about-skills-title': { 'en': 'Languages & Experience', 'ru': 'Языки и Опыт' },
+            'about-languages-label': { 'en': 'Spoken Languages:', 'ru': 'Разговорные языки:' },
+            'lang-russian': { 'en': 'Russian', 'ru': 'Русский' },
+            'lang-ukrainian': { 'en': 'Ukrainian', 'ru': 'Украинский' },
+            'lang-italian': { 'en': 'Italian', 'ru': 'Итальянский' },
+            'about-scratch-label': { 'en': 'Early Experience:', 'ru': 'Начальный опыт:' },
+            'about-scratch-link': { 'en': 'Scratch Profile (Damir110611)', 'ru': 'Профиль Scratch (Damir110611)' },
+
+            'section-projects-title': { 'en': 'My Projects', 'ru': 'Мои Проекты' },
+            'project-1-title': { 'en': '1. Stone Simulator', 'ru': '1. Kamen Simulator' },
+            'project-1-desc': { 
+                'en': '<strong>Description:</strong> An absurd 3D simulator where the player controls a stone collecting mushrooms.', 
+                'ru': '<strong>Описание:</strong> Абсурдный 3D симулятор, в котором игрок управляет камнем, собирающим грибы.'
+            },
+            'project-1-stack': { 'en': '<strong class="text-neon-purple">Stack:</strong> Unity, C#.', 'ru': '<strong class="text-neon-purple">Стек:</strong> Unity, C#.' },
+            'project-1-tech': { 
+                'en': '<strong class="text-neon-purple">Technical Value:</strong> Demonstrates basic movement mechanics, physics (Rigidbody) handling, and a 3D item collection system (Trigger/Collision) in the Unity environment. The project shows confident mastery of the engine\'s core components.',
+                'ru': '<strong class="text-neon-purple">Техническая ценность:</strong> Демонстрация базовой механики движения, работы с физикой (Rigidbody) и системы сбора предметов (Trigger/Collision) в 3D среде Unity. Проект показывает уверенное владение основными компонентами движка.'
+            },
+            'project-1-button-play': { 'en': '▶️ Play Simulator', 'ru': '▶️ Играть в Симулятор' },
+            'project-1-button-github': { 'en': '💻 GitHub (Main Profile)', 'ru': '💻 GitHub (Общий Профиль)' },
+
+            'section-skills-title': { 'en': 'Key Skills', 'ru': 'Ключевые Навыки' },
+            'section-skills-subtitle': { 
+                'en': 'My expertise lies in game development using Unity and creating a reliable cloud backend for them.', 
+                'ru': 'Моя экспертиза лежит в разработке игр на Unity и создании надежного облачного бэкенда для них.'
+            },
+            'skill-unity-title': { 'en': 'Unity & C# Development', 'ru': 'Unity & C# Разработка' },
+            'skill-csharp': { 
+                'en': '<strong>C#</strong>: Writing clean, readable, and optimized code for game logic.', 
+                'ru': '<strong>C#</strong>: Написание чистого, читаемого и оптимизированного кода для игровой логики.'
+            },
+            'skill-unity-eco': { 
+                'en': '<strong>Unity Ecosystem</strong>: Confident handling of GameObject, Components, Prefabs, Physics, and Animator.', 
+                'ru': '<strong>Unity Ecosystem</strong>: Уверенное использование GameObject, Components, Prefabs, Physics и Animator.'
+            },
+            'skill-game-mechanics': { 
+                'en': '<strong>Game Mechanics</strong>: Development of basic systems (movement, inventory, UI) in 2D and 3D.', 
+                'ru': '<strong>Игровая Механика</strong>: Разработка базовых систем (движение, инвентарь, UI) в 2D и 3D.'
+            },
+            // Removed redundancy (optimization) to make room for new Git skill in a 3-column layout.
+            // 'skill-optimization': { 
+            //     'en': '<strong>Optimization</strong>: Initial skills in performance improvement and profiling.', 
+            //     'ru': '<strong>Оптимизация</strong>: Начальные навыки в повышении производительности и профилировании.'
+            // },
+            
+            'skill-firebase-title': { 'en': 'Cloud Technologies (Firebase)', 'ru': 'Облачные Технологии (Firebase)' },
+            'skill-firestore': { 
+                'en': '<strong>Firestore/Realtime DB</strong>: Effective real-time data management.', 
+                'ru': '<strong>Firestore/Realtime DB</strong>: Эффективное управление данными в реальном времени.'
+            },
+            'skill-firebase-int': { 
+                'en': '<strong>Firebase Integration</strong>: Integrating cloud services with Unity projects (Highscores, User Profiles).', 
+                'ru': '<strong>Firebase Integration</strong>: Интеграция облачных сервисов с проектами Unity (Highscores, User Profiles).'
+            },
+            'skill-auth': { 
+                'en': '<strong>Authentication</strong>: Implementation of user login and registration systems.', 
+                'ru': '<strong>Authentication</strong>: Реализация систем входа и регистрации пользователей.'
+            },
+            // 'skill-storage': { 
+            //     'en': '<strong>Storage</strong>: Storing and managing user files and game assets.', 
+            //     'ru': '<strong>Storage</strong>: Хранение и управление пользовательскими файлами и игровыми ассетами.'
+            // },
+
+            // NEW GIT SKILL
+            'skill-git-title': { 'en': 'Version Control (Git/GitHub)', 'ru': 'Контроль Версий (Git/GitHub)' },
+            'skill-git-desc-1': {
+                'en': '<strong>GitHub</strong>: Confident use of basic commands (commit, push, pull, branch) to manage project code.',
+                'ru': '<strong>GitHub</strong>: Уверенное использование базовых команд (commit, push, pull, branch) для управления кодом проекта.'
+            },
+            'skill-git-desc-2': {
+                'en': '<strong>Collaboration</strong>: Ability to work in shared repositories and resolve basic conflicts.',
+                'ru': '<strong>Сотрудничество</strong>: Способность работать в общих репозиториях и разрешать базовые конфликты.'
+            },
+            'skill-git-unity': {
+                'en': '<strong>Unity Workflow</strong>: Experience in synchronizing Unity assets and scenes via Git.',
+                'ru': '<strong>Unity Workflow</strong>: Опыт синхронизации ассетов и сцен Unity через Git.'
+            },
+
+
+            'section-education-title': { 'en': 'Education & Background', 'ru': 'Образование и Опыт' },
+            'education-goit-title': { 'en': 'GoIt (Online IT School)', 'ru': 'GoIt (Онлайн-школа IT)' },
+            'education-goit-desc': { 
+                'en': 'Online IT school focused on modern development practices.', 
+                'ru': 'Онлайн-школа IT, ориентированная на современные практики разработки.'
+            },
+            'education-paolo-title': { 'en': 'Scuola Media Paolo VI (Italy)', 'ru': 'Scuola Media Paolo VI (Италия)' },
+            'education-paolo-desc': { 
+                'en': 'Private middle school in Italy.', 
+                'ru': 'Приватная школа (среднее образование) в Италии.'
+            },
+
+            'section-contact-title': { 'en': 'Contact Me', 'ru': 'Связь со мной' },
+            'section-contact-subtitle': { 
+                'en': 'Use the links below to give feedback on my projects and skills, or to contact 1106Games.', 
+                'ru': 'Используйте ссылки ниже, чтобы дать обратную связь по моим проектам и навыкам, или связаться с 1106Games.'
+            },
+        };
+
+        const languageToggle = document.getElementById('languageToggle');
+        
+        // Устанавливаем язык по умолчанию (English)
+        let currentLang = 'en';
+
+        // Функция для перевода
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            
+            // Обновление всех элементов с атрибутом data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[key] && translations[key][lang]) {
+                    // Используем innerHTML для поддержки тегов <strong> внутри строк
+                    element.innerHTML = translations[key][lang];
+                }
+            });
+
+            // Обновление ссылок в навигации, которые не имеют отдельных data-i18n атрибутов (скрыто для мобильных, но лучше обновить)
+            document.querySelectorAll('header nav div.space-x-4 a').forEach(link => {
+                const key = link.getAttribute('data-i18n');
+                if (translations[key] && translations[key][lang]) {
+                    link.textContent = translations[key][lang];
+                }
+            });
+
+            // Обновление title страницы
+            if (lang === 'ru') {
+                 document.title = 'user110611 | Портфолио GameDev';
+            } else {
+                 document.title = 'user110611 | GameDev Portfolio';
+            }
+        }
+
+        // Обработчик переключения
+        languageToggle.addEventListener('change', (e) => {
+            const newLang = e.target.checked ? 'ru' : 'en';
+            setLanguage(newLang);
+        });
+
+        // Инициализация при загрузке. Ползунок по умолчанию выключен (EN).
+        setLanguage('en'); 
+    </script>
 </body>
 </html>
-
